@@ -1,1 +1,1 @@
-# videoqruploader
+# QRit App

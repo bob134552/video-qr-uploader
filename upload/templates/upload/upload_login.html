@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="container h-100 d-flex justify-content-center">
+        <div class="my-auto row">
+            <div class="col-12" data-aos="fade-up" data-aos-duration="2000">
+                <form class="card p-3 upload-form" method="POST" action="{% url 'upload_login' %}">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <button type="submit" class="btn btn-small btn-primary rounded-0">Submit</button>
+                  </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
