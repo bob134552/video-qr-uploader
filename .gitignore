@@ -8,3 +8,4 @@ __pycache__
 *.pyc
 *.sqlite3
 .vscode/*
+request.http

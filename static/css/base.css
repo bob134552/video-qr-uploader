@@ -36,16 +36,19 @@ body {
   stroke-dasharray: 60 207;
   stroke-width: 6;
 }
+
 .opened .line1 {
   stroke-dasharray: 90 207;
   stroke-dashoffset: -134;
   stroke-width: 6;
 }
+
 .opened .line2 {
   stroke-dasharray: 1 60;
   stroke-dashoffset: -30;
   stroke-width: 6;
 }
+
 .opened .line3 {
   stroke-dasharray: 90 207;
   stroke-dashoffset: -134;
@@ -56,8 +59,34 @@ body {
   width: 400px;
 }
 
+/* Toasts */
+.border-custom {
+  border-width: 0 0 0 4px !important;
+}
+
+.message-container {
+  position: fixed;
+  top: 175px;
+  right: 15px;
+  z-index: 99999999;
+}
+
+.menu, #main-nav {
+  z-index: 10000000;
+}
+
+.preview {
+  width: 50vw!important;
+  min-width: 540px;
+}
+
 @media (max-width: 575.98px) {
   .upload-form {
     width: 80vw;
+  }
+
+  .preview {
+    width: 100%!important;
+    min-width: 100%!important;
   }
 }

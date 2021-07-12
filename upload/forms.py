@@ -2,7 +2,7 @@ from django import forms
 from .models import Videos
 
 
-class VideoForm(forms.ModelForm):
+class UploadForm(forms.ModelForm):
 
     class Meta:
         model = Videos
@@ -13,3 +13,18 @@ class VideoForm(forms.ModelForm):
         )
     
     keyword = forms.CharField(widget=forms.PasswordInput)
+
+
+class VideoForm(forms.ModelForm):
+
+    class Meta:
+        model = Videos
+        fields = (
+            'video',
+        )
+
+    video = forms.FileField(required=True)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['video'].label = False

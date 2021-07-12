@@ -34,7 +34,6 @@
         <title> {% block extra_title %}{% endblock %}</title>
     </head>
 
-   
     <body>
         <header class="container-fluid fixed-top">
             <div class="row">
@@ -54,18 +53,13 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="" class="nav-link text-dark">
+                                <a href="{% url 'upload_login' %}" class="nav-link text-dark">
                                     Upload Video
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="" class="nav-link text-dark">
+                                <a href="{% url 'video_login' %}" class="nav-link text-dark">
                                     View Video
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="https://gogreenbabies.com/" class="nav-link text-dark">
-                                    Store
                                 </a>
                             </li>
                         </ul>
@@ -105,7 +99,7 @@
             <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" integrity="sha512-A7AYk1fGKX6S2SsHywmPkrnzTZHrgiVT7GcQkLGDe2ev0aWb8zejytzS8wjo7PGEXKqJOrjQ4oORtnimIRZBtw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
             <script>
                 AOS.init();
-              </script>
+            </script>
             <script type="text/javascript">
                 var toastElList = [].slice.call(document.querySelectorAll('.toast'))
                 var toastList = toastElList.map(function (toastEl) {
@@ -115,5 +109,4 @@
             </script>
         {% endblock %}
     </body>
-
 </html>

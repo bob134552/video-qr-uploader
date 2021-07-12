@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="container h-100 d-flex justify-content-center">
+        <div class="my-auto row">
+            <div class="col-12 mx-auto">
+                <div class="ratio ratio-16x9 preview mb-3 mx-auto">
+                    <video controls>
+                        <source src="{{ MEDIA_URL }}{{ video.video }}">
+                        I'm sorry; your browser doesn't support HTML5 video.
+                    </video>
+                </div>
+            </div>
+            <div class="col-12 d-md-none" data-aos="fade-up" data-aos-duration="2000">
+                <nav>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <button class="nav-link active" id="nav-upload-tab" data-bs-toggle="tab" data-bs-target="#nav-upload" type="button" role="tab" aria-controls="nav-upload" aria-selected="true">Upload/Record Video</button>
+                    </div>
+                </nav>
+
+                <div class="tab-content border border-top-0 p-1" id="nav-tabContent">
+                    <div class="tab-pane fade show active mt-2" id="nav-upload" role="tabpanel" aria-labelledby="nav-upload-tab">
+                        <form action="{% url 'upload_video' video.id %}" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <input type="file" name="video" id="id_video" accept="video/*" required>
+                            <div class="d-flex justify-content-end">
+                                <button type="submit" class="btn btn-small btn-primary rounded-0">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-8 offset-md-2 d-none d-md-block" data-aos="fade-up" data-aos-duration="2000">
+                <nav>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <button class="nav-link active" id="nav-upload-desktop-tab" data-bs-toggle="tab" data-bs-target="#nav-upload-desktop" type="button" role="tab" aria-controls="nav-upload-desktop" aria-selected="true">Upload Video</button>
+                        <button class="nav-link" id="nav-record-desktop-tab" data-bs-toggle="tab" data-bs-target="#nav-record-desktop" type="button" role="tab" aria-controls="nav-record-desktop" aria-selected="false">Record Video</button>
+                    </div>
+                </nav>
+                <div class="tab-content border border-top-0 p-1" id="nav-tabContent">
+                    <div class="tab-pane fade show active mt-2" id="nav-upload-desktop" role="tabpanel" aria-labelledby="nav-upload-tab">
+                        <form action="{% url 'upload_video' video.id %}" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{ form|crispy }}
+                            <div class="d-flex justify-content-end">
+                                <button type="submit" class="btn btn-small btn-primary rounded-0">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="tab-pane fade" id="nav-record-desktop" role="tabpanel" aria-labelledby="nav-record-desktop-tab">
+                        <form action="{% url 'upload_video' video.id %}" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            Desktop recording
+                            <div class="d-flex justify-content-end">
+                                <button type="submit" class="btn btn-small btn-primary rounded-0">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+
+
+{% endblock %}
