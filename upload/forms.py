@@ -23,7 +23,7 @@ class VideoForm(forms.ModelForm):
             'video',
         )
 
-    video = forms.FileField(required=True)
+    video = forms.FileField(required=True, widget=forms.FileInput)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

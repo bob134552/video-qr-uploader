@@ -3,11 +3,23 @@
 {% block content %}
 
     <div class="container h-100 d-flex justify-content-center">
-        <div class="my-auto row">
-            <div class="col-12" data-aos="fade-up" data-aos-duration="2000">
-                <form class="card p-3 upload-form rounded-0 shadow" method="POST" action="">
+        <div class="my-auto row" data-aos="fade-up" data-aos-duration="2000">
+            <div class="col-12">
+                <form class="card p-3 upload-form rounded-0 shadow mx-auto" method="POST" action="{% url 'video_login' %}">
+                    <h5 class="text-center">
+                        Please enter details to view your video.
+                    </h5>
+                    <hr class="mt-0">
                     {% csrf_token %}
-                    <button type="submit" class="btn btn-small btn-primary rounded-0">Submit</button>
+                    <div class="mb-3">
+                        <label for="id_order_number" class="form-label">Order Number*</label>
+                        <input type="text" class="form-control" name='order_number' id="id_order_number" required {% if order_number != "" %} value="{{ order_number }}"{% endif %}>
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_keyword" class="form-label">Keyword*</label>
+                        <input type="text" class="form-control" name='keyword' id="id_keyword" {% if keyword != "" %} value="{{ keyword }}"{% endif %}>
+                    </div>
+                    <button type="submit" class="btn btn-sm btn-primary rounded-0">View Video</button>
                 </form>
             </div>
         </div>

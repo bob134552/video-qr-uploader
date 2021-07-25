@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="container h-100 d-flex justify-content-center">
+        <div class="my-auto row card shadow pt-3">
+            <div class="col-12 mx-auto">
+                <div class="ratio ratio-16x9 preview mx-auto">
+                    <video controls>
+                        <source src="{{ MEDIA_URL }}{{ video.video }}">
+                        I'm sorry; your browser doesn't support HTML5 video.
+                    </video>
+                </div>
+            </div>
+            <div class="col-12 text-end my-0">
+                <a href="{{ MEDIA_URL}}{{ video.video }}" class="text-decoration-none" download>
+                <span class="text-danger text-small">
+                    Download
+                </span>
+                </a>
+            </div>
+            <div class="col-8 mx-auto">
+                <form action="{% url 'view_video' video.id %}">
+                    <div class="mb-3">
+                        <label for="id_name" class="form-label">Full Name:</label>
+                        <input type="text" class="form-control" id="id_name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_message" class="form-label">Message:</label>
+                        <textarea class="form-control" name="message" id="id_message" rows="3" placeholder="Send a thank you message..." required></textarea>
+                    </div>
+                    <div class="mb-3 text-center">
+                        <button type="submit" class="btn btn-primary rounded-0">Send Message</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

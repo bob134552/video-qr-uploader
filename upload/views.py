@@ -1,5 +1,4 @@
-from django.http.response import HttpResponse
-from django.shortcuts import get_object_or_404, redirect, render, resolve_url
+from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.conf import settings
 from django.contrib import messages
@@ -7,6 +6,7 @@ from .forms import UploadForm, VideoForm
 from .models import Videos
 import shopify
 import moviepy.editor
+
 
 def upload_login(request):
 
@@ -19,14 +19,14 @@ def upload_login(request):
             'email': request.POST['email'],
             'keyword': request.POST['keyword']
         }
-        
+
         for i, order in enumerate(orders):
             if order.order_number == int(data['order_number']) and order.email == data['email']:
                 video = Videos.objects.filter(
                     order_number=data['order_number'], email=data['email'])
                 if video.exists():
                     if data['keyword'] == video[0].keyword:
-                        request.session['pp_upload_login'] = True
+                        request.session['pp_upload_login'] = video[0].id
                         return redirect(reverse('upload_video', args=[video[0].id]))
                     else:
                         messages.warning(
@@ -36,7 +36,7 @@ def upload_login(request):
                     form = UploadForm(data)
                     if form.is_valid():
                         new_video = form.save()
-                        request.session['pp_upload_login'] = True
+                        request.session['pp_upload_login'] = new_video.id
                         messages.success(
                             request, 'Please upload or record your video.')
                         return redirect(reverse('upload_video', args=[new_video.id]))
@@ -45,7 +45,8 @@ def upload_login(request):
                         return redirect('upload_login')
             else:
                 if i == len(orders) - 1:
-                    messages.error(request, 'Order Number/Email doesn\'t match with Shopify Order details.')
+                    messages.error(
+                        request, 'Order Number/Email doesn\'t match with Shopify Order details.')
                     return redirect('upload_login')
     else:
         email = request.GET.get('email') if request.GET.get(
@@ -67,27 +68,42 @@ def upload_login(request):
 
 def upload_video(request, video_id):
     if 'pp_upload_login' in request.session:
-        video = get_object_or_404(Videos, pk=video_id)
-        if request.method == 'POST':
-            v = moviepy.editor.VideoFileClip(request.FILES['video'].temporary_file_path())
-            duration = v.duration
-            if duration <= 30 and duration > 0:
-                form = VideoForm(request.POST, request.FILES, instance=video)
-                if form.is_valid():
-                    form.save()
-                    messages.success(request, 'Video Uploaded!')
+        if request.session['pp_upload_login'] == video_id:
+            video = get_object_or_404(Videos, pk=video_id)
+            if request.method == 'POST':
+                if request.FILES['video'].name.split('.')[1] == "webm":
+                    form = VideoForm(request.POST, request.FILES, instance=video)
+                    if form.is_valid():
+                        form.save()
+                        messages.success(request, 'Video Uploaded!')
+                    else:
+                        messages.error(request, 'Upload Failed.')
+                    return redirect(reverse('upload_video', args=[video_id]))
                 else:
-                    messages.error(request, 'Upload Failed.')
-                return redirect(reverse('upload_video', args=[video_id]))
+                    v = moviepy.editor.VideoFileClip(request.FILES['video'].file.name)
+                    duration = v.duration
+                    if duration <= 30 and duration > 0:
+                        form = VideoForm(request.POST, request.FILES, instance=video)
+                        if form.is_valid():
+                            form.save()
+                            messages.success(request, 'Video Uploaded!')
+                        else:
+                            messages.error(request, 'Upload Failed.')
+                        return redirect(reverse('upload_video', args=[video_id]))
+                    else:
+                        messages.error(
+                            request, 'Please ensure video duration is less than 30s.')
+                    return redirect(reverse('upload_video', args=[video_id]))
             else:
-                messages.error(request, 'Please ensure video duration is less than 30s.')
-                return redirect(reverse('upload_video', args=[video_id]))
+                form = VideoForm()
+                context = {
+                    'video': video,
+                    'form': form,
+                }
+                return render(request, 'upload/upload_video.html', context)
         else:
-            form = VideoForm()
-            context = {
-                'video': video,
-                'form': form,
-            }
-            return render(request, 'upload/upload_video.html', context)
+            messages.warning(request, 'Please fill in details.')
+            return redirect(reverse('upload_login'))
     else:
-        return redirect(reverse('home'))
+        messages.warning(request, 'Please fill in details.')
+        return redirect(reverse('upload_login'))

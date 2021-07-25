@@ -70,7 +70,7 @@
 
         <!-- Django messages -->
         {% if messages %}
-            <div class="message-container">
+            <div class="message-container" data-aos="fade-left" data-aos-duration="500">
                 {% for message in messages %}
                     {% with message.level as level %}
                         {% if level == 40 %}

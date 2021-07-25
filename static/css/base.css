@@ -80,6 +80,9 @@ body {
   min-width: 540px;
 }
 
+
+
+
 @media (max-width: 575.98px) {
   .upload-form {
     width: 80vw;
