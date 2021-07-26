@@ -53,7 +53,11 @@ def view_video(request, video_id):
                 from_email = settings.DEFAULT_FROM_EMAIL
                 to = video.email
 
+                video.reply = True
+                video.save()
                 mail.send_mail(subject, plain_message, from_email, [to], html_message=html_message)
+                messages.success(request, f'Message Sent to {video.email}!')
+                return redirect(reverse('view_video', args=[video_id]))
             else:
                 context = {
                     'video': video,
@@ -66,3 +70,4 @@ def view_video(request, video_id):
     else:
         messages.warning(request, 'Please enter details to view video.')
         return redirect(reverse('video_login'))
+

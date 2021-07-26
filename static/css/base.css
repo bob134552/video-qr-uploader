@@ -3,6 +3,10 @@ body {
   margin: 0;
 }
 
+.brand {
+  max-width: 250px!important;
+}
+
 .menu {
   background-color: transparent;
   border: none;

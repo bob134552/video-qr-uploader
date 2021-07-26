@@ -18,6 +18,7 @@ class Videos(models.Model):
     email = models.EmailField(max_length=254, null=False, blank=False)
     keyword = models.CharField(max_length=20, null=False, blank=False)
     qr_code = models.ImageField(upload_to='qr_codes/', blank=True)
+    reply = models.BooleanField(default=False, null=False, blank=False)
 
     def __str__(self):
         return str(self.order_number)

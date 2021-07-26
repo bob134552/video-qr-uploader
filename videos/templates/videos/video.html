@@ -5,6 +5,8 @@
     <div class="container h-100 d-flex justify-content-center">
         <div class="my-auto row card shadow pt-3">
             <div class="col-12 mx-auto">
+                <h4 class="text-center">Your QRit Video</h4>
+                <hr class="mx-auto w-75">
                 <div class="ratio ratio-16x9 preview mx-auto">
                     <video controls>
                         <source src="{{ MEDIA_URL }}{{ video.video }}">
@@ -12,18 +14,15 @@
                     </video>
                 </div>
             </div>
-            <div class="col-12 text-end my-0">
-                <a href="{{ MEDIA_URL}}{{ video.video }}" class="text-decoration-none" download>
-                <span class="text-danger text-small">
-                    Download
-                </span>
-                </a>
-            </div>
-            <div class="col-8 mx-auto">
-                <form action="{% url 'view_video' video.id %}">
+            <div class="col-8 mt-4 mx-auto">
+                {% if video.reply == False %}
+                <p class="text-lead text-center mb-0">Send a reply to your video</p>
+                <hr class="w-75 mx-auto my-0">
+                <form action="{% url 'view_video' video.id %}" method="POST" class="mt-2">
+                    {% csrf_token %}
                     <div class="mb-3">
                         <label for="id_name" class="form-label">Full Name:</label>
-                        <input type="text" class="form-control" id="id_name" required>
+                        <input type="text" class="form-control" name="name" id="id_name" required>
                     </div>
                     <div class="mb-3">
                         <label for="id_message" class="form-label">Message:</label>
@@ -33,6 +32,9 @@
                         <button type="submit" class="btn btn-primary rounded-0">Send Message</button>
                     </div>
                 </form>
+                {% else %}
+                <p class="text-lead text-center mt-2 mb-5">Your reply has been sent!</p>
+                {% endif %}
             </div>
         </div>
     </div>
