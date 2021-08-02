@@ -10,6 +10,11 @@ from django.utils.html import strip_tags
 
 
 def video_login(request):
+    '''
+    Renders video login page.
+    On post takes order_number and keyword to log into the video page.
+    pp_video_login set to prevent user from bypassing login.
+    '''
     if request.method == 'POST':
         data = {
             'order_number': request.POST['order_number'],
@@ -38,6 +43,11 @@ def video_login(request):
 
 
 def view_video(request, video_id):
+    '''
+    Renders video page.
+    On post, takes name and message to send a reply email to the user that uploaded the
+    video.
+    '''
     if 'pp_video_login' in request.session:
         if request.session['pp_video_login'] == video_id:
             video = Videos.objects.get(pk=video_id)
@@ -48,6 +58,7 @@ def view_video(request, video_id):
                 html_message = render_to_string('videos/email_templates/email_template.html', {
                     'name' : name,
                     'body': body,
+                    'video': video,
                     })
                 plain_message = strip_tags(html_message)
                 from_email = settings.DEFAULT_FROM_EMAIL

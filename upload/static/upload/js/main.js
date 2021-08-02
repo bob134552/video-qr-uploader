@@ -33,6 +33,8 @@ const recordedVideo = document.querySelector("video#recorded");
 const recordButton = document.querySelector("button#record");
 const gumVideo = document.querySelector("video#gum");
 const fileInputElement = $('.file_input');
+
+/* Starts recording and ends recording after 30s */
 recordButton.addEventListener("click", () => {
     if (recordButton.textContent === "Start Recording") {
     startRecording();
@@ -51,6 +53,7 @@ recordButton.addEventListener("click", () => {
 });
 
 const playButton = document.querySelector("button#play");
+/* Displays recorded video for user */
 playButton.addEventListener("click", () => {
     const mimeType = "codecs=h264,opus";
     const superBuffer = new Blob(recordedBlobs, { type: mimeType });
@@ -64,6 +67,7 @@ playButton.addEventListener("click", () => {
 });
 
 const downloadButton = document.querySelector('button#download');
+/* Download on click */
 downloadButton.addEventListener('click', () => {
     const blob = new Blob(recordedBlobs, {type: 'video/webm'});
     const url = window.URL.createObjectURL(blob);
@@ -87,6 +91,7 @@ function handleDataAvailable(event) {
     }
 }
 
+/* Start Recording */
 function startRecording() {
     gumVideo.parentElement.style.display = 'block'
     recordedBlobs = [];
@@ -130,6 +135,7 @@ function handleSuccess(stream) {
     gumVideo.srcObject = stream;
 }
 
+/* Initialise webcam recorder */
 async function init(constraints) {
     try {
         const stream = await navigator.mediaDevices.getUserMedia(constraints);
@@ -140,6 +146,7 @@ async function init(constraints) {
     }
 }
 
+/* Creates webcam video */
 document.querySelector("button#start").addEventListener("click", async () => {
     gumVideo.parentElement.style.display = 'block';
     document.querySelector("button#start").disabled = true;

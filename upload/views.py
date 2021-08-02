@@ -9,7 +9,12 @@ import moviepy.editor
 
 
 def upload_login(request):
-
+    ''' Renders the upload login page.
+        If directed to this page via qr code then the email and order_number fields are prefilled.
+        On post shopify is queried for orders and checked to see if the order number exists in
+        the shopify store.
+        Post request requires the users email, order_number and a keyword.
+    '''
     if request.method == 'POST':
         shopify.ShopifyResource.set_site(settings.SHOP_URL)
         orders = shopify.Order.find()
@@ -67,11 +72,16 @@ def upload_login(request):
 
 
 def upload_video(request, video_id):
+    '''
+    Renders video upload page for specified video_id.
+    Takes a video file to add to the specific video model.
+    Checks length of video to ensure 30s maximum.
+    '''
     if 'pp_upload_login' in request.session:
         if request.session['pp_upload_login'] == video_id:
             video = get_object_or_404(Videos, pk=video_id)
             if request.method == 'POST':
-                if request.FILES['video'].name.split('.')[1] == "webm":
+                if request.FILES['video'].content_type == "video/webm":
                     form = VideoForm(request.POST, request.FILES, instance=video)
                     if form.is_valid():
                         form.save()

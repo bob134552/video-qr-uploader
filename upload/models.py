@@ -1,5 +1,3 @@
-import os
-
 from django.db import models
 from django.dispatch import receiver
 from io import BytesIO
@@ -9,6 +7,7 @@ import qrcode
 
 
 class Videos(models.Model):
+    '''Videos model qr_code is generated on creation of model.'''
     class Meta:
         ordering = ('-order_number',)
         verbose_name_plural = 'Videos'

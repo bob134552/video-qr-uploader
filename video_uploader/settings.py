@@ -165,7 +165,7 @@ if 'USE_AWS' in os.environ:
     # S3 cache parameters.
     AWS_S3_OBJECT_PARAMETERS = {
         'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
-        'CacheControl': 'max-age=94608000',
+        'CacheControl': 'max-age=30',
     }
 
     AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')

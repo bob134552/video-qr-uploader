@@ -1,10 +1,15 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block extra_title %}
+    - Home
+{% endblock %}
+
 {% block content %}
 
     <div class="container h-100 d-flex justify-content-center">
-        <div class="my-auto row">
+        <div class="my-auto row card shadow" data-aos="fade-up" data-aos-duration="2000">
+            <!-- Preview display of currently uploaded video -->
             {% if video.video %}
                 <div class="col-12 mx-auto">
                     <h3 class="text-center">
@@ -18,8 +23,16 @@
                         </video>
                     </div>
                 </div>
+            {% else %}
+                <div class="col-12 mx-auto mt-2">
+                    <h3 class="text-center">
+                        Upload Your Video
+                    </h3>
+                    <hr class="w-50 mx-auto mt-0">
+                </div>
             {% endif %}
-            <div class="col-12 d-md-none" data-aos="fade-up" data-aos-duration="2000">
+            <!-- Mobile upload/record options -->
+            <div class="col-12 d-lg-none my-2" data-aos="fade-up">
                 <nav>
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
                         <button class="nav-link active" id="nav-upload-tab" data-bs-toggle="tab" data-bs-target="#nav-upload" type="button" role="tab" aria-controls="nav-upload" aria-selected="true">Upload/Record Video</button>
@@ -40,7 +53,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 d-none d-md-block preview mx-auto" data-aos="fade-up" data-aos-duration="2000">
+            <!-- Desktop upload/record tool-->
+            <div class="col-12 d-none d-lg-block preview mx-auto m-3">
                 <nav>
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
                         <button class="nav-link active" id="nav-upload-desktop-tab" data-bs-toggle="tab" data-bs-target="#nav-upload-desktop" type="button" role="tab" aria-controls="nav-upload-desktop" aria-selected="true">Upload Video</button>
@@ -57,6 +71,7 @@
                             </div>
                         </form>
                     </div>
+                    <!-- Webcam display/preview display -->
                     <div class="tab-pane fade" id="nav-record-desktop" role="tabpanel" aria-labelledby="nav-record-desktop-tab">
                         <div class="ratio ratio-16x9 recording mb-3 mx-auto" style="display: none;">
                             <video id="gum" playsinline autoplay muted></video>
@@ -64,6 +79,7 @@
                         <div class="ratio ratio-16x9 recording mb-3 mx-auto" style="display: none;">
                             <video id="recorded" playsinline></video>
                         </div>
+                        <!-- Recording tools -->
                         <div class="row">
                             <div class="col-12">
                                 <div class="my-3 text-center">

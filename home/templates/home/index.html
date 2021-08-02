@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block extra_title %}
+    - Home
+{% endblock %}
+
 {% block content %}
 
     <div class="container h-100 d-flex justify-content-center">
@@ -10,9 +14,9 @@
                 <hr class="my-0 mx-auto w-50">
                 <img src="{{ MEDIA_URL }}brand-logo.png" alt="brand-logo" class="brand img-fluid">
                 <ul class="list-inline text-center">
-                    <li class="list-inline-item lead border-end d-none d-md-inline-block pe-1 me-0"><a href="{% url 'upload_login' %}" class="btn">Upload Video</a></li>
-                    <li class="list-inline-item lead d-md-none pe-1 me-0"><a href="{% url 'upload_login' %}" class="btn">Upload Video</a></li>
-                    <li class="list-inline-item lead ps-0"><a href="{% url 'video_login' %}" class="btn">View Video</a></li>
+                    <li class="list-inline-item lead border-end d-none d-md-inline-block pe-1 me-0"><a href="{% url 'upload_login' %}" class="btn btn-home rounded-0">Upload Video</a></li>
+                    <li class="list-inline-item lead d-md-none pe-1 me-0"><a href="{% url 'upload_login' %}" class="btn btn-home rounded-0">Upload Video</a></li>
+                    <li class="list-inline-item lead ms-0"><a href="{% url 'video_login' %}" class="btn btn-home rounded-0">View Video</a></li>
                 </ul>
             </div>
         </div>

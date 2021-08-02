@@ -3,10 +3,12 @@ body {
   margin: 0;
 }
 
+/* Logo */
 .brand {
   max-width: 250px!important;
 }
 
+/* Hamburger menu styling */
 .menu {
   background-color: transparent;
   border: none;
@@ -63,6 +65,14 @@ body {
   width: 400px;
 }
 
+/* Buttons */
+
+.btn-home:hover {
+  transition: 0.3s;
+  box-shadow: 0 0.5em 0.5em -0.4em #0269a6;
+  transform: translateY(-0.25em);
+}
+
 /* Toasts */
 .border-custom {
   border-width: 0 0 0 4px !important;
@@ -79,14 +89,20 @@ body {
   z-index: 10000000;
 }
 
+
+/* Preview video styling */
 .preview {
-  width: 50vw!important;
-  min-width: 540px;
+  width: 40vw!important;
+  min-width: 510px;
 }
 
+/* Misc */
 
+div#div_id_keyword {
+  margin-bottom: 0!important;
+}
 
-
+/* Media queries */
 @media (max-width: 575.98px) {
   .upload-form {
     width: 80vw;

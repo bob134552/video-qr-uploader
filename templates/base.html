@@ -2,7 +2,6 @@
 <!doctype html>
 <html lang="en">
     <head>
-
         {% block meta %}
             <meta http-equiv="X-UA-Compatible" content="ie=edge">
             <meta charset="utf-8">
@@ -26,18 +25,20 @@
             <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
             <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
+            <script src="https://kit.fontawesome.com/ffd731fb76.js" crossorigin="anonymous"></script>
         {% endblock %}
 
         {% block extra_js %}
         {% endblock %}
 
-        <title> {% block extra_title %}{% endblock %}</title>
+        <title>QRit {% block extra_title %}{% endblock %}</title>
     </head>
 
     <body>
         <header class="container-fluid fixed-top">
             <div class="row">
                 <nav class="navbar">
+                    <!--Hamburger menu-->
                     <button class="menu" aria-label="Toggle navigation" data-bs-toggle="collapse" data-bs-target="#main-nav" aria-controls="main-nav" onclick="this.classList.toggle('opened');this.setAttribute('aria-expanded', this.classList.contains('opened'))">
                             <svg width="50" height="50" viewBox="0 0 100 100">
                                 <path class="line line1" d="M 20,29.000046 H 80.000231 C 80.000231,29.000046 94.498839,28.817352 94.532987,66.711331 94.543142,77.980673 90.966081,81.670246 85.259173,81.668997 79.552261,81.667751 75.000211,74.999942 75.000211,74.999942 L 25.000021,25.000058" />
@@ -93,13 +94,23 @@
         <!--Main Content Block-->
         {% block content %}
         {% endblock %}
-
+        <footer class="fixed-bottom">
+            <div class="row">
+                <div class="col-12">
+                    <p class="text-center text-secondary">
+                        <i class="far fa-envelope"></i> : qrit100@gmail.com
+                    </p>
+                </div>
+            </div>
+        </footer>
 
         {% block postloadjs %}
             <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" integrity="sha512-A7AYk1fGKX6S2SsHywmPkrnzTZHrgiVT7GcQkLGDe2ev0aWb8zejytzS8wjo7PGEXKqJOrjQ4oORtnimIRZBtw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            <!--Initialise Animate on scroll-->
             <script>
                 AOS.init();
             </script>
+            <!--Displays Toasts-->
             <script type="text/javascript">
                 var toastElList = [].slice.call(document.querySelectorAll('.toast'))
                 var toastList = toastElList.map(function (toastEl) {

@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
-
+{% block extra_title %}
+    - Upload Login
+{% endblock %}
 {% block content %}
-
+    <!-- Login form -->
     <div class="container h-100 d-flex justify-content-center">
         <div class="my-auto row">
             <div class="col-12" data-aos="fade-up" data-aos-duration="2000">
@@ -12,7 +14,10 @@
                     <hr class="mt-0">
                     {% csrf_token %}
                     {{ form|crispy }}
-                    <button type="submit" class="btn btn-sm btn-primary rounded-0">Submit</button>
+                    <div id="keywordHelpBlock" class="form-text mb-3">
+                        Enter or create a keyword, if this is your first time.
+                    </div>
+                    <button type="submit" class="btn btn-sm btn-primary rounded-0 w-50 mx-auto">Submit</button>
                 </form>
             </div>
         </div>
