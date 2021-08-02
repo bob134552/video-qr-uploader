@@ -37,9 +37,9 @@
     <body>
         <header class="container-fluid fixed-top">
             <div class="row">
-                <nav class="navbar">
+                <nav class="navbar bg-light">
                     <!--Hamburger menu-->
-                    <button class="menu" aria-label="Toggle navigation" data-bs-toggle="collapse" data-bs-target="#main-nav" aria-controls="main-nav" onclick="this.classList.toggle('opened');this.setAttribute('aria-expanded', this.classList.contains('opened'))">
+                    <button class="menu" aria-label="Toggle navigation" data-bs-toggle="collapse" data-bs-target="#main-nav" aria-controls="main-nav" onclick="this.classList.toggle('opened');this.setAttribute('aria-expanded', this.classList.contains('opened'));this.parentElement.classList.toggle('border-bottom')">
                             <svg width="50" height="50" viewBox="0 0 100 100">
                                 <path class="line line1" d="M 20,29.000046 H 80.000231 C 80.000231,29.000046 94.498839,28.817352 94.532987,66.711331 94.543142,77.980673 90.966081,81.670246 85.259173,81.668997 79.552261,81.667751 75.000211,74.999942 75.000211,74.999942 L 25.000021,25.000058" />
                                 <path class="line line2" d="M 20,50 H 80" />
@@ -94,7 +94,8 @@
         <!--Main Content Block-->
         {% block content %}
         {% endblock %}
-        <footer class="fixed-bottom">
+
+        <footer class="container-fluid">
             <div class="row">
                 <div class="col-12">
                     <p class="text-center text-secondary">
