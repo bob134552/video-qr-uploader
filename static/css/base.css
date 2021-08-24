@@ -61,16 +61,21 @@ body {
   stroke-width: 6;
 }
 
-.upload-form {
-  width: 400px;
-}
-
 /* Buttons */
 
-.btn-home:hover {
+.btn-animate:hover {
   transition: 0.3s;
   box-shadow: 0 0.5em 0.5em -0.4em #0269a6;
   transform: translateY(-0.25em);
+}
+
+.btn-bg-custom {
+  background-color: #63cfc2!important;
+  color: #fff;
+}
+
+.btn-bg-custom:hover {
+  background-color: #54b3a7!important;
 }
 
 /* Toasts */
@@ -104,10 +109,6 @@ div#div_id_keyword {
 
 /* Media queries */
 @media (max-width: 575.98px) {
-  .upload-form {
-    width: 80vw;
-  }
-
   .preview {
     width: 100%!important;
     min-width: 100%!important;

@@ -37,35 +37,40 @@
     <body>
         <header class="container-fluid fixed-top">
             <div class="row">
-                <nav class="navbar bg-light">
-                    <!--Hamburger menu-->
-                    <button class="menu" aria-label="Toggle navigation" data-bs-toggle="collapse" data-bs-target="#main-nav" aria-controls="main-nav" onclick="this.classList.toggle('opened');this.setAttribute('aria-expanded', this.classList.contains('opened'));this.parentElement.classList.toggle('border-bottom')">
-                            <svg width="50" height="50" viewBox="0 0 100 100">
-                                <path class="line line1" d="M 20,29.000046 H 80.000231 C 80.000231,29.000046 94.498839,28.817352 94.532987,66.711331 94.543142,77.980673 90.966081,81.670246 85.259173,81.668997 79.552261,81.667751 75.000211,74.999942 75.000211,74.999942 L 25.000021,25.000058" />
-                                <path class="line line2" d="M 20,50 H 80" />
-                                <path class="line line3" d="M 20,70.999954 H 80.000231 C 80.000231,70.999954 94.498839,71.182648 94.532987,33.288669 94.543142,22.019327 90.966081,18.329754 85.259173,18.331003 79.552261,18.332249 75.000211,25.000058 75.000211,25.000058 L 25.000021,74.999942" />
-                            </svg>
-                    </button>
-                    <div class="collapse navbar-collapse mt-5" id="main-nav">
-                        <ul class="navbar-nav text-end">
-                            <li class="nav-item">
-                                <a href="{% url 'home' %}" class="nav-link text-dark">
-                                    Home
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{% url 'upload_login' %}" class="nav-link text-dark">
-                                    Upload Video
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{% url 'video_login' %}" class="nav-link text-dark">
-                                    View Video
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
+                <div class="col-8 col-md-6 mt-2">
+                    <a class="navbar-brand" href="{% url 'home' %}"><img src="{{ MEDIA_URL }}brand-logo.png" style="width: 45px; height: 45px;" alt="brand-logo">QRit</a>
+                </div>
+                <div class="col-4 col-md-2 offset-md-4 px-0">
+                    <nav class="navbar">
+                        <!--Hamburger menu-->
+                        <button class="menu" aria-label="Toggle navigation" data-bs-toggle="collapse" data-bs-target="#main-nav" aria-controls="main-nav" onclick="this.classList.toggle('opened');this.setAttribute('aria-expanded', this.classList.contains('opened'));$(this).parent().parent().toggleClass('border-start').toggleClass('border-bottom').toggleClass('bg-white');">
+                                <svg width="50" height="50" viewBox="0 0 100 100">
+                                    <path class="line line1" d="M 20,29.000046 H 80.000231 C 80.000231,29.000046 94.498839,28.817352 94.532987,66.711331 94.543142,77.980673 90.966081,81.670246 85.259173,81.668997 79.552261,81.667751 75.000211,74.999942 75.000211,74.999942 L 25.000021,25.000058" />
+                                    <path class="line line2" d="M 20,50 H 80" />
+                                    <path class="line line3" d="M 20,70.999954 H 80.000231 C 80.000231,70.999954 94.498839,71.182648 94.532987,33.288669 94.543142,22.019327 90.966081,18.329754 85.259173,18.331003 79.552261,18.332249 75.000211,25.000058 75.000211,25.000058 L 25.000021,74.999942" />
+                                </svg>
+                        </button>
+                        <div class="collapse navbar-collapse mt-5 pe-1" id="main-nav">
+                            <ul class="navbar-nav text-end">
+                                <li class="nav-item">
+                                    <a href="{% url 'home' %}" class="nav-link text-dark">
+                                        Home
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{% url 'upload_login' %}" class="nav-link text-dark">
+                                        Upload Video
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{% url 'video_login' %}" class="nav-link text-dark">
+                                        View Video
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
             </div>
         </header>
 

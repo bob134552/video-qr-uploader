@@ -163,3 +163,9 @@ document.querySelector("button#start").addEventListener("click", async () => {
     console.log("Using media constraints:", constraints);
     await init(constraints);
 });
+
+
+$(".upload-form").on('submit', function() {
+    $(".spinner-loader").toggleClass('d-none');
+    $(".btn-upload-form").attr('disabled', 'disabled');
+});

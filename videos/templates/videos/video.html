@@ -5,7 +5,7 @@
     <div class="container h-100 d-flex justify-content-center">
         <div class="my-auto row card shadow pt-3">
             <div class="col-12 mx-auto">
-                <h4 class="text-center">Your QRit Video</h4>
+                <h4 class="text-center">Your Personal Video Message</h4>
                 <hr class="mx-auto w-75">
                 <div class="ratio ratio-16x9 preview mx-auto">
                     <video controls>
@@ -21,7 +21,7 @@
                 <form action="{% url 'view_video' video.id %}" method="POST" class="mt-2">
                     {% csrf_token %}
                     <div class="mb-3">
-                        <label for="id_name" class="form-label">Full Name:</label>
+                        <label for="id_name" class="form-label">Your Full Name:</label>
                         <input type="text" class="form-control" name="name" id="id_name" required>
                     </div>
                     <div class="mb-3">
@@ -29,11 +29,13 @@
                         <textarea class="form-control" name="message" id="id_message" rows="3" placeholder="Send a thank you message..." required></textarea>
                     </div>
                     <div class="mb-3 text-center">
-                        <button type="submit" class="btn btn-primary rounded-0">Send Message</button>
+                        <button type="submit" class="btn btn-bg-custom rounded-pill btn-animate">Send Message</button>
                     </div>
                 </form>
                 {% else %}
                 <p class="text-lead text-center mt-2 mb-5">Your reply has been sent!</p>
+                <p>Why not leave a review?</p>
+                <a href="#" class="btn btn-bg-custom rounded-pill btn-animate">Click here!</a>
                 {% endif %}
             </div>
         </div>
