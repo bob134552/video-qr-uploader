@@ -29,7 +29,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEVELOPEMENT')
 
-ALLOWED_HOSTS = ['qrit-video-app.herokuapp.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['qrit-video-app.herokuapp.com', 'localhost', '127.0.0.1', 'www.qrit.live', 'qrit.live']
 
 
 # Application definition
