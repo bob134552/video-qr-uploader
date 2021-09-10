@@ -43,7 +43,7 @@ recordButton.addEventListener("click", () => {
         recordButton.textContent = "Start Recording";
         playButton.disabled = false;
         downloadButton.disabled = false;
-    }, 30000);
+    }, 60000);
     } else {
         stopRecording();
         recordButton.textContent = "Start Recording";

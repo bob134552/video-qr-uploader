@@ -23,8 +23,8 @@ class Videos(models.Model):
         return str(self.order_number)
 
     def save(self, *args, **kwargs):
-        qr_code_img = qrcode.make(f'https://www.qrit-video-app.herokuapp.com/video/?order_number={self.order_number}&keyword={self.keyword}')
-        canvas = Image.new('RGB', (400, 400), 'white')
+        qr_code_img = qrcode.make(f'https://www.qrit.live/video/?order_number={self.order_number}&keyword={self.keyword}')
+        canvas = Image.new('RGB', (450, 450), 'white')
         draw = ImageDraw.Draw(canvas)
         canvas.paste(qr_code_img)
         fname = f'qr_code-{self.order_number}.png'

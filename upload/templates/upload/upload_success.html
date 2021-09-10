@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block extra_title %}
+    - Upload Success
+{% endblock %}
+{% block content %}
+    <!-- Login form -->
+    <div class="container h-100 d-flex justify-content-center">
+        <div class="my-auto row">
+            <div class="col-12" data-aos="fade-up" data-aos-duration="2000">
+                <div class="card p-3 shadow">
+                    <h5 class="text-center mb-0">Upload Successful!</h5>
+                    <hr>
+                    <br>
+                    <p>To view your video or change it click below</p>
+                    <button type="button" class="btn btn-bg-custom rounded-pill btn-animate mx-auto" onclick="javascript:history.back()" style="width: 100px;">Go Back</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

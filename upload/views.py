@@ -86,23 +86,25 @@ def upload_video(request, video_id):
                     if form.is_valid():
                         form.save()
                         messages.success(request, 'Video Uploaded!')
+                        return render(request, 'upload/upload_success.html')
                     else:
                         messages.error(request, 'Upload Failed.')
                     return redirect(reverse('upload_video', args=[video_id]))
                 else:
                     v = moviepy.editor.VideoFileClip(request.FILES['video'].file.name)
                     duration = v.duration
-                    if duration <= 30 and duration > 0:
+                    if duration <= 60 and duration > 0:
                         form = VideoForm(request.POST, request.FILES, instance=video)
                         if form.is_valid():
                             form.save()
                             messages.success(request, 'Video Uploaded!')
+                            return render(request, 'upload/upload_success.html')
                         else:
                             messages.error(request, 'Upload Failed.')
                         return redirect(reverse('upload_video', args=[video_id]))
                     else:
                         messages.error(
-                            request, 'Please ensure video duration is less than 30s.')
+                            request, 'Please ensure video duration is less than 60s.')
                     return redirect(reverse('upload_video', args=[video_id]))
             else:
                 form = VideoForm()
